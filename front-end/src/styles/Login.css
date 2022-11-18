@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&family=Pacifico&family=Poppins:wght@500&display=swap') ;
+
+.login {
+  background-color: #f9e4e6;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  justify-items: center;
+}
+
+.login-container {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 1rem;
+  box-shadow: 1px 5px 15px rgba(10, 10, 10, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 22vw;
+}
+
+.login-container:after {
+  background-color: rgb(44, 42, 42);
+  content: '';
+  height: 80vh;
+  left: 50%;
+  padding: 0.025rem;
+  position: absolute;
+  top: 4rem;
+}
+
+.form-logo {
+  display: none;
+}
+
+.flex-column label {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.input-text {
+  border: none;
+  border-bottom: 2px solid black;
+  font-family: Fira Sans , sans-serif;
+  font-size: 1rem;
+  height: 1.5rem;
+  margin-top: 0.5rem;
+  outline: none;
+}
+
+.input-text:focus, .input-text:hover {
+  background: #a3a3a338;
+  border-color: #60b483;
+}
+
+.buttons-login-container {
+  display: flex;
+  width: 100%;
+}
+
+.delivery-img {
+  width: 100%;
+}
+
+@media ( max-width : 880px ) {
+
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .login-container {
+    margin-bottom: 0.75rem;
+    order: 1;
+    padding: 0.1rem 1.5rem;
+    position: relative;
+    width: 65vw;
+  }
+
+  .brand h1 {
+    font-family: Pacifico , Poppins , serif;
+    font-weight: 500;
+  }
+
+  .delivery-logo {
+    display: none;
+  }
+
+  .invalid-message {
+    bottom: 14rem;
+    color: crimson;
+    position: absolute;
+  }
+
+  .form-logo {
+    display: block;
+    position: absolute;
+    right: 0.75rem;
+    top: 0;
+  }
+
+  .login-container:after {
+    display: none;
+  }
+
+  .flex-column {
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  .flex-column label {
+    align-self: flex-start;
+    margin: 1.1rem 0;
+    width: 40%;
+  }
+
+  .buttons-login-container {
+    justify-content: space-around;
+    padding: 1rem;
+  }
+
+  .buttons-login-container button {
+    padding: 0.52rem;
+    width: 8rem;
+  }
+
+  .delivery-img {
+    height: 250px;
+  }
+}

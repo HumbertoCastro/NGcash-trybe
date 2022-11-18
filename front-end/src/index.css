@@ -1,0 +1,185 @@
+body {
+  margin: 0;
+  font-size: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.flex-row.brand {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.primary {
+  color: white;
+  background: #036B52;
+}
+
+.secundary {
+  color: white;
+  background: #2FC18C;
+}
+
+.terciary {
+  color: white;
+  background: #421981;
+}
+
+button {
+  border: none;
+  margin: 5px;
+  margin-top: 20px;
+  border-radius: 5px;
+  color: white;
+  width: 50%;
+  min-height: 15%;
+  cursor: pointer;
+  padding: 0.65rem;
+  font-weight: 600;
+  transition: all ease 0.3s;
+}
+
+button.primary:hover {
+  background: #60B483;
+}
+
+button.terciary:hover {
+  background: #5434b3;
+}
+
+.disabilitado {
+  background-color: grey !important;
+}
+
+.disabilitado:hover {
+  background-color: gray;
+}
+
+.product-card {
+  border: 2px solid  #2FC18C;
+  border-radius: 3px;
+  margin: 3px;
+  width: 15%;
+}
+
+.add-button-products {
+  width: 100%;
+}
+
+.total-price {
+  border-radius: 5px;
+  color: white;
+  font-size: x-large;
+  position: sticky;
+  bottom: 0;
+}
+
+table {
+  border: 1px solid gray;
+  align-items: center;
+  text-align: center;
+}
+
+.purple {
+  color: white;
+  background: #421981;
+}
+
+.blue {
+  color: white;
+  background: #056CF9;
+}
+
+.order-card {
+  border-radius: 0.5rem;
+  border: 1px solid #a3a3a3;
+  padding: 0.625rem;
+  cursor: pointer;
+  margin: 1rem;
+  transition: all ease 0.2s;
+}
+
+.order-card:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.orderInfos {
+  display: block;
+}
+
+.order-total, .order-data {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.order-data {
+  margin-bottom: 0.25rem;
+}
+
+.order-total::before {
+  content: "total: R$";
+}
+
+.status-title {
+  font-weight: 700;
+  margin: 0 0.5rem;
+  font-size: 1.3rem;
+  border-radius: 1rem;
+  padding: 0.25rem;
+}
+
+.navbar {
+  width: 100vw;
+  position: sticky;
+  height: 5vh;
+  margin-top: 0;
+  top: 0;
+}
+
+.navbar button {
+  width: 30vw;
+  height: 5vh;
+  margin: 0;
+  border-radius: 0;
+}
+
+.navbar h1 {
+  height: 5vh;
+  width: 20vw;
+  white-space: nowrap;
+  text-align: center;
+  font-size: xx-large;
+}
+
+.qualquercoisa {
+  width: 80%;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
