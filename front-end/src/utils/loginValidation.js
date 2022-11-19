@@ -1,10 +1,10 @@
-const isEmailAndPasswordValid = (email, password) => {
-  const min = 6;
-  const validEmailExp = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
-  const isValidEmail = validEmailExp.test(email);
-  const isValidPassword = password.length >= min;
-  if (isValidEmail && isValidPassword) return true;
+const isNameAndPasswordValid = (name, password) => {
+  const min = 8;
+  const validPasswordExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
+  const isValidPassword = validPasswordExp.test(password);
+  const isValidName = name.length >= min;
+  if (isValidName && isValidPassword) return true;
   return false;
 };
 
-export default isEmailAndPasswordValid;
+export default isNameAndPasswordValid;

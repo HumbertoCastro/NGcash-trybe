@@ -17,7 +17,6 @@ function invalidLogin() {
 }
 
 function Register({ history }) {
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [disabled, setDisabled] = useState(false);
@@ -25,13 +24,14 @@ function Register({ history }) {
 
   const handleRegister = async () => {
     try {
-      await usersService.createUser({ name, email, password });
+      await usersService.createUser({ name, password });
 
-      const newUserLogin = await loginService.login({ email, password });
+      const newUserLogin = await loginService.login({ name, password });
+      console.log(newUserLogin);
 
       if (newUserLogin) {
         localStorage.setItem('user', JSON.stringify(newUserLogin));
-        history.push('/customer/products');
+        history.push('/home');
       }
     } catch {
       setIsLoginInvalid(true);
@@ -40,16 +40,14 @@ function Register({ history }) {
 
   useEffect(() => {
     const verifyInputs = () => {
-      const valid = isRegisterInputsValid(email, password, name);
+      const valid = isRegisterInputsValid(password, name);
       setDisabled(!valid);
     };
     verifyInputs();
-  }, [email, password, name]);
+  }, [password, name]);
 
   const handleChange = ({ target: { value, name: nameInput } }) => {
-    if (nameInput === 'Email') {
-      setEmail(value);
-    } else if (nameInput === 'Senha') {
+    if (nameInput === 'Senha') {
       setPassword(value);
     } else {
       setName(value);
@@ -60,25 +58,16 @@ function Register({ history }) {
     <div className="register flex-column">
       <form className="flex-column">
         <InputsText
-          dataTestId="common_register__input-name"
           name="Name"
           stateName="Name"
           callBack={ handleChange }
         />
         <InputsText
-          dataTestId="common_register__input-email"
-          name="Email"
-          stateName="Email"
-          callBack={ handleChange }
-        />
-        <InputsText
-          dataTestId="common_register__input-password"
           name="Senha"
           stateName="Senha"
           callBack={ handleChange }
         />
         <Button
-          dataTestId="common_register__button-register"
           importanceClass="primary"
           name="CADASTRAR"
           callBack={ handleRegister }

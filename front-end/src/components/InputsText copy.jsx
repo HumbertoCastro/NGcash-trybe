@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function InputsText({ callBack, stateName, name }) {
+function InputNumber({ callBack, stateName, name }) {
   return (
     <label htmlFor={ stateName }>
       { name }
       <input
         name={ stateName }
         className="input-text"
-        type="text"
+        type="number"
         onChange={ callBack }
       />
     </label>
   );
 }
-export default InputsText;
+export default InputNumber;
 
-InputsText.propTypes = {
+InputNumber.propTypes = {
   name: PropTypes.string.isRequired,
   stateName: PropTypes.string.isRequired,
   callBack: PropTypes.func.isRequired,

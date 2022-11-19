@@ -1,79 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import Button from './Button';
+import accountService from '../services/account';
 
 function Navbar() {
   const [userName, setUsername] = useState('');
-  const [userRole, setUserRole] = useState('');
+  const [userId, setId] = useState(9999);
+  const [accountBalance, setAccountBalance] = useState(0);
 
-  useEffect(() => {
+  useEffect(async () => {
     const user = JSON.parse(localStorage.getItem('user'));
 
-    const { role, name } = user;
-
-    setUserRole(role);
+    const { id, name, accountId } = user;
+    setId(id);
     setUsername(name);
+    
+    const account = await accountService.getByid(accountId);
+    setAccountBalance(account.balance);
   }, []);
+
   const history = useHistory();
   const location = useLocation();
+
   const handleLogout = () => {
     localStorage.clear();
     history.push('/');
   };
-  const handleRedirectProducts = () => {
-    if (location.pathname !== '/customer/products') {
-      history.push('/customer/products');
-    }
-  };
-  const handleRedirectOrders = () => {
-    if (location.pathname !== '/customer/orders') {
-      history.push('/customer/orders');
-    }
-  };
-  const handleRedirectSellerOrders = () => {
-    console.log('clicou');
-    if (location.pathname !== '/seller/orders') {
-      history.push('/seller/orders');
-    }
-  };
   return (
     <div className="navbar flex-row">
-      {
-        userRole === 'customer' ? (
-          <div className="flex-row">
-            <Button
-              callBack={ handleRedirectProducts }
-              disabled={ false }
-              name="PRODUTOS"
-              importanceClass="secundary"
-              dataTestId="customer_products__element-navbar-link-products"
-            />
-            <Button
-              callBack={ handleRedirectOrders }
-              disabled={ false }
-              name="MEUS PEDIDOS"
-              importanceClass="primary"
-              dataTestId="customer_products__element-navbar-link-orders"
-            />
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={ handleRedirectSellerOrders }
-            data-testid="customer_products__element-navbar-link-orders"
-          >
-            PEDIDOS
-          </button>
-        )
-      }
       <h1
-        data-testid="customer_products__element-navbar-user-full-name"
         className="purple"
       >
         { userName }
       </h1>
+      <h1
+        className="purple"
+      >
+        { accountBalance }
+      </h1>
       <Button
-        dataTestId="customer_products__element-navbar-link-logout"
         name="SAIR"
         importanceClass="blue"
         callBack={ handleLogout }

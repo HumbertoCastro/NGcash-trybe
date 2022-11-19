@@ -5,26 +5,24 @@ import deliveryApp from '../images/delivery.png';
 import Button from '../components/Button';
 import InputsText from '../components/InputsText';
 import img from '../images/trybelogo.png';
-import isEmailAndPasswordValid from '../utils/loginValidation';
+import isNameAndPasswordValid from '../utils/loginValidation';
 import loginService from '../services/login';
 
 function invalidLogin() {
   return (
-    <p
-      data-testid="common_login__element-invalid-email"
-    >
+    <p>
       Credencias Invalidas
     </p>
   );
 }
 
 function Login({ history }) {
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(false);
   const [isLoginInvalid, setIsLoginInvalid] = useState(false);
   const isLogged = localStorage.getItem('user');
-  const defaultRoute = '/customer/products';
+  const defaultRoute = '/home';
 
   if (isLogged) {
     history.push(defaultRoute);
@@ -37,10 +35,9 @@ function Login({ history }) {
 
   const handleLogin = async () => {
     try {
-      const userLogin = await loginService.login({ email, password });
+      const userLogin = await loginService.login({ name, password });
       localStorage.setItem('user', JSON.stringify(userLogin));
-      if (userLogin.role === 'customer') history.push(defaultRoute);
-      if (userLogin.role === 'seller') history.push('/seller/orders');
+      history.push('/home');
     } catch {
       setIsLoginInvalid(true);
     }
@@ -52,15 +49,15 @@ function Login({ history }) {
 
   const handleChange = (
     { target: { value, name } },
-  ) => (name === 'Email' ? setEmail(value) : setPassword(value));
+  ) => (name === 'Name' ? setName(value) : setPassword(value));
 
   useEffect(() => {
     const verifyInputs = () => {
-      const validation = isEmailAndPasswordValid(email, password);
+      const validation = isNameAndPasswordValid(name, password);
       setDisabled(!validation);
     };
     verifyInputs();
-  }, [email, password]);
+  }, [name, password]);
 
   return (
     <section className="login flex-column">
@@ -68,27 +65,23 @@ function Login({ history }) {
         <form className="flex-column">
           <img src={ img } className="form-logo" alt="imagem-logo" width="70px" />
           <InputsText
-            dataTestId="common_login__input-email"
             name="Login"
-            stateName="Email"
+            stateName="Name"
             callBack={ handleChange }
           />
           <InputsText
-            dataTestId="common_login__input-password"
             name="Senha"
             stateName="Senha"
             callBack={ handleChange }
           />
           <div className="buttons-login-container">
             <Button
-              dataTestId="common_login__button-login"
               importanceClass="primary"
               name="LOGIN"
               callBack={ handleLogin }
               disabled={ disabled }
             />
             <Button
-              dataTestId="common_login__button-register"
               importanceClass="terciary"
               name="Ainda não tenho conta"
               disabled={ false }
@@ -99,7 +92,7 @@ function Login({ history }) {
       </div>
       <div>
         <div className="flex-row brand">
-          <h1>Delivery app</h1>
+          <h1>NGcash app</h1>
           <img className="delivery-logo" src={ img } alt="imagem-logo" width="70px" />
         </div>
         <img className="delivery-img" src={ deliveryApp } alt="" />
