@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Button from '../components/Button';
 import Filters from '../components/Filters';
 import InputsText from '../components/InputsText';
-import InputNumber from '../components/InputsText copy';
+import InputNumber from '../components/InputNumber';
 import Navbar from '../components/Navbar';
 import TransactionCard from '../components/TransactionCard';
 import ngcashContext from '../context/ngcashContext';
@@ -19,6 +19,11 @@ function HomePage() {
   const [myId, setMyId] = useState('');
   const [creditedName, setCreditedName] = useState('');
   const [value, setValue] = useState(0);
+  const [invalid, setInvalid] = useState(false);
+
+  const invalidUsername = () => (
+    <h1>Insert valid data</h1>
+  );
 
   const handleChange = (
     { target: { value: inputValue, name: inputName } },
@@ -27,7 +32,6 @@ function HomePage() {
   const handleTransaction = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const { token, accountId } = user;
-    console.log(creditedName, value);
 
     const data = {
       id: accountId,
@@ -38,9 +42,12 @@ function HomePage() {
     const headers = {
       Authorization: token,
     };
-
-    await transactionsService.createTransaction(data, headers);
-    window.location.reload(false);
+    try {
+      await transactionsService.createTransaction(data, headers);
+      window.location.reload(false);
+    } catch (err) {
+      setInvalid(true);
+    }
   };
 
   const getTransactions = async (accountId, id) => {
@@ -125,6 +132,9 @@ function HomePage() {
           importanceClass="terciary"
           callBack={ handleTransaction }
         />
+        {
+          invalid ? invalidUsername() : null
+        }
       </section>
     </div>
   );

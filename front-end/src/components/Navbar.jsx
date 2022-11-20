@@ -9,11 +9,12 @@ function Navbar() {
 
   useEffect(async () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    const { id, name, accountId } = user;
-    setId(id);
+    const { name, accountId } = user;
+    console.log(name);
     setUsername(name);
     const account = await accountService.getByid(accountId);
     setAccountBalance(account.balance);
+    console.log(userName);
   }, []);
 
   const history = useHistory();

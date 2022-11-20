@@ -5,6 +5,7 @@ import InputsText from '../components/InputsText';
 import usersService from '../services/users';
 import loginService from '../services/login';
 import isRegisterInputsValid from '../utils/registerValidation';
+import InputPassword from '../components/InputPassword';
 
 function invalidLogin() {
   return (
@@ -63,7 +64,7 @@ function Register({ history }) {
           stateName="Name"
           callBack={ handleChange }
         />
-        <InputsText
+        <InputPassword
           name="Senha"
           stateName="Senha"
           callBack={ handleChange }

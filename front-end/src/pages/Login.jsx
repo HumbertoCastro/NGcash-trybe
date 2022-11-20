@@ -1,20 +1,18 @@
 import '../styles/Login.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import deliveryApp from '../images/delivery.png';
 import Button from '../components/Button';
 import InputsText from '../components/InputsText';
 import img from '../images/trybelogo.png';
 import isNameAndPasswordValid from '../utils/loginValidation';
 import loginService from '../services/login';
+import InputPassword from '../components/InputPassword';
 
-function invalidLogin() {
-  return (
-    <p>
-      Credencias Invalidas
-    </p>
-  );
-}
+const invalidLogin = () => (
+  <p>
+    Credencias Invalidas
+  </p>
+);
 
 function Login({ history }) {
   const [name, setName] = useState('');
@@ -48,8 +46,8 @@ function Login({ history }) {
   };
 
   const handleChange = (
-    { target: { value, name } },
-  ) => (name === 'Name' ? setName(value) : setPassword(value));
+    { target: { value, name: nameInput } },
+  ) => (nameInput === 'Name' ? setName(value) : setPassword(value));
 
   useEffect(() => {
     const verifyInputs = () => {
@@ -69,7 +67,7 @@ function Login({ history }) {
             stateName="Name"
             callBack={ handleChange }
           />
-          <InputsText
+          <InputPassword
             name="Senha"
             stateName="Senha"
             callBack={ handleChange }
@@ -95,7 +93,6 @@ function Login({ history }) {
           <h1>NGcash app</h1>
           <img className="delivery-logo" src={ img } alt="imagem-logo" width="70px" />
         </div>
-        <img className="delivery-img" src={ deliveryApp } alt="" />
       </div>
       {
         isLoginInvalid && invalidLogin()
