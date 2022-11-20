@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from './Button';
 import accountService from '../services/account';
 
 function Navbar() {
   const [userName, setUsername] = useState('');
-  const [userId, setId] = useState(9999);
   const [accountBalance, setAccountBalance] = useState(0);
 
   useEffect(async () => {
     const user = JSON.parse(localStorage.getItem('user'));
-
     const { id, name, accountId } = user;
     setId(id);
     setUsername(name);
-    
     const account = await accountService.getByid(accountId);
     setAccountBalance(account.balance);
   }, []);
 
   const history = useHistory();
-  const location = useLocation();
 
   const handleLogout = () => {
     localStorage.clear();

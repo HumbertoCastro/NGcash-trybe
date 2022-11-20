@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ngcashContext from './ngcashContext';
-import { useEffect } from 'react';
 
 function Provider({ children }) {
   const [allTransactions, setAllTransactions] = useState([]);

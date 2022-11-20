@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import ngcashContext from '../context/ngcashContext';
 
 function Filters() {
+  const magic = -1;
   const {
     setAllTransactions,
     unfilterTransactions,
@@ -24,7 +25,7 @@ function Filters() {
         if (new Date(a.createdAt) > new Date(b.createdAt)) {
           return 1;
         } if (new Date(a.createdAt) < new Date(b.createdAt)) {
-          return -1;
+          return magic;
         }
         return 0;
       });
@@ -37,7 +38,7 @@ function Filters() {
     const mapedTransactions = clone
       .sort((a, b) => {
         if (new Date(a.createdAt) > new Date(b.createdAt)) {
-          return -1;
+          return magic;
         } if (new Date(a.createdAt) < new Date(b.createdAt)) {
           return 1;
         }
