@@ -36,6 +36,7 @@ function Navbar() {
       <h1
         className="purple"
       >
+        Available cash:
         { accountBalance }
       </h1>
       <Button

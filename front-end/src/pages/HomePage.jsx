@@ -1,22 +1,28 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from '../components/Button';
+import Filters from '../components/Filters';
 import InputsText from '../components/InputsText';
 import InputNumber from '../components/InputsText copy';
 import Navbar from '../components/Navbar';
 import TransactionCard from '../components/TransactionCard';
+import ngcashContext from '../context/ngcashContext';
 import transactionsService from '../services/transactions';
 import usersService from '../services/users';
 
 function HomePage() {
-  const [transactions, setTransactions] = useState([]);
+  const {
+    allTransactions,
+    setAllTransactions,
+    setUnfilterTransactions,
+  } = useContext(ngcashContext);
   const [name, setName] = useState('');
   const [myId, setMyId] = useState('');
   const [creditedName, setCreditedName] = useState('');
   const [value, setValue] = useState(0);
 
   const handleChange = (
-    { target: { value, name: inputName } },
-  ) => (inputName === "name" ? setCreditedName(value) : setValue(value) );
+    { target: { value: inputValue, name: inputName } },
+  ) => (inputName === 'name' ? setCreditedName(inputValue) : setValue(inputValue));
 
   const handleTransaction = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -33,28 +39,30 @@ function HomePage() {
       Authorization: token,
     };
 
-    const trans = await transactionsService.createTransaction(data, headers);
+    await transactionsService.createTransaction(data, headers);
     window.location.reload(false);
-  }
+  };
 
   const getTransactions = async (accountId, id) => {
-    console.log("foi sChamado");
     transactionsService.getAllSales(accountId)
       .then((respose) => Promise.all(respose.map(async (x) => {
+        console.log(x);
         const { debitedAccountId: debitedId, creditedAccountId: creditedId } = x;
         if (creditedId !== id) {
-          console.log('cashouts')
           const user = await usersService.getUserById(creditedId);
-          const newObject = Object.assign({}, x, { creditedAccountId: user.username});
-          return newObject;
-        } else {
-          console.log('cashIN')
-          const user = await usersService.getUserById(debitedId);
-          const newObject = Object.assign({}, x, { debitedAccountId: user.username});
+          const newObject = Object
+            .assign(x, { creditedAccountId: user.username, type: 'cashout' });
           return newObject;
         }
-      }))).then((maped) => setTransactions([...maped]));
-  }
+        const user = await usersService.getUserById(debitedId);
+        const newObject = Object
+          .assign(x, { debitedAccountId: user.username, type: 'cashin' });
+        return newObject;
+      }))).then((maped) => {
+        setAllTransactions([...maped]);
+        setUnfilterTransactions([...maped]);
+      });
+  };
 
   useEffect(() => {
     const { name: username, accountId, id } = JSON.parse(localStorage.getItem('user'));
@@ -66,37 +74,57 @@ function HomePage() {
   return (
     <div className="products-page flex-column">
       <Navbar />
-      <main>
+      <Filters />
+      <main className="flex-column">
         {
-          transactions.map((x) => {
-            const { creditedAccountId: credited, debitedAccountId: debited, value } = x;
+          allTransactions.map((x) => {
+            const {
+              creditedAccountId: credited,
+              debitedAccountId: debited,
+              value: valueTransaction,
+              createdAt,
+            } = x;
             if (credited === myId) {
               return (
                 <TransactionCard
                   name={ name }
-                  value={ value }
+                  value={ valueTransaction }
                   type="cashin"
                   otherAccountName={ debited }
+                  date={ createdAt }
                 />
-              )
-            } else {
-              return (
-                <TransactionCard
-                  name={ name }
-                  value={ value }
-                  type="cashout"
-                  otherAccountName={ credited }
-                />
-              )
+              );
             }
+            return (
+              <TransactionCard
+                key={ `${name}-${valueTransaction}` }
+                name={ name }
+                value={ valueTransaction }
+                type="cashout"
+                otherAccountName={ credited }
+                date={ createdAt }
+              />
+            );
           })
         }
       </main>
       <section>
         <h1 className="terciary">Make a new Transaction</h1>
-        <InputsText name="Credited Accout Username" stateName="name" callBack={ handleChange } />
-        <InputNumber name="VALUE of the transaction" stateName="value" callBack={ handleChange } />
-        <Button name="Make Transaction" importanceClass="terciary" callBack={ handleTransaction }/>
+        <InputsText
+          name="Credited Accout Username"
+          stateName="name"
+          callBack={ handleChange }
+        />
+        <InputNumber
+          name="VALUE of the transaction"
+          stateName="value"
+          callBack={ handleChange }
+        />
+        <Button
+          name="Make Transaction"
+          importanceClass="terciary"
+          callBack={ handleTransaction }
+        />
       </section>
     </div>
   );

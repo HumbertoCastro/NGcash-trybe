@@ -25,6 +25,7 @@ function Register({ history }) {
   const handleRegister = async () => {
     try {
       await usersService.createUser({ name, password });
+      console.log(name, password);
 
       const newUserLogin = await loginService.login({ name, password });
       console.log(newUserLogin);
