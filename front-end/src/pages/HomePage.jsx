@@ -51,6 +51,7 @@ function HomePage() {
   };
 
   const getTransactions = async (accountId, id) => {
+    setAllTransactions([]);
     transactionsService.getAllSales(accountId)
       .then((respose) => Promise.all(respose.map(async (x) => {
         console.log(x);
