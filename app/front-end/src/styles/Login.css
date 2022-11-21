@@ -62,10 +62,6 @@
   width: 100%;
 }
 
-.delivery-img {
-  width: 100%;
-}
-
 @media ( max-width : 880px ) {
 
   .login {
@@ -84,11 +80,6 @@
     font-family: Pacifico , Poppins , serif;
     font-weight: 500;
   }
-
-  .delivery-logo {
-    display: none;
-  }
-
   .invalid-message {
     bottom: 14rem;
     color: crimson;
@@ -125,9 +116,5 @@
   .buttons-login-container button {
     padding: 0.52rem;
     width: 8rem;
-  }
-
-  .delivery-img {
-    height: 250px;
   }
 }

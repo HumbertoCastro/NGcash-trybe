@@ -9,6 +9,7 @@
   "scripts": {
     "pm2": "./node_modules/.bin/pm2",
     "jest": "./node_modules/.bin/jest",
+    "test": "jest --runInBand",
     "stop": "(pm2 stop all && pm2 delete all) | grep 'PM2'",
     "compose:up": "(cd app && docker-compose up -d --build)",
     "compose:down": "(cd app && docker-compose down --remove-orphans)"
@@ -27,6 +28,7 @@
     "@faker-js/faker": "6.0.0",
     "axios": "0.26.1",
     "dotenv": "16.0.0",
+    "frisby": "^2.1.3",
     "jest": "27.5.1",
     "jest-puppeteer": "6.1.0",
     "jsonwebtoken": "8.5.1",
@@ -46,5 +48,9 @@
       "__TESTDESC__": true,
       "__TESTFILE__": true
     }
+  },
+  "dependencies": {
+    "config": "^3.3.8",
+    "shelljs": "^0.8.5"
   }
 }

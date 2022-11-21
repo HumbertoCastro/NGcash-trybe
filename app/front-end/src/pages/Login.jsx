@@ -91,7 +91,6 @@ function Login({ history }) {
       <div>
         <div className="flex-row brand">
           <h1>NGcash app</h1>
-          <img className="delivery-logo" src={ img } alt="imagem-logo" width="70px" />
         </div>
       </div>
       {
