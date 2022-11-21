@@ -18,7 +18,13 @@ do 0 para fornercer informacoes financeiras aos usuarios do APP.
 
 Para fazer o deploy desse projeto é necessario alguns passos
 
-Primeiramente, vc devera entrar nos dois diretorios, o /app/back-end e o /app/front-end
+na Raiz do projeto, utilize o comando
+
+```bash
+  npm install
+```
+
+apos finalizar a instalaçao, vc devera entrar nos dois diretorios, o /app/back-end e o /app/front-end
 e instalar as dependencias utilizando do comando
 
 ```bash
