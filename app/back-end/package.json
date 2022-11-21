@@ -1,7 +1,7 @@
 {
-  "name": "delivery-app-back-end",
+  "name": "ng-cash-back-end",
   "version": "0.1.0",
-  "description": "Back-end do projeto App de Delivery",
+  "description": "Back-end do projeto NGcash",
   "main": "./src/api/server.js",
   "engines": {
     "node": ">=16.0.0"

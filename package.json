@@ -1,7 +1,7 @@
 {
-  "name": "sd-0x-project-delivery-app",
+  "name": "ng-cash",
   "version": "1.0.0",
-  "description": "\"Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀\"",
+  "description": "\"Package.json do projeto NGcash\"",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -9,28 +9,20 @@
   "scripts": {
     "pm2": "./node_modules/.bin/pm2",
     "jest": "./node_modules/.bin/jest",
-    "start": "./scripts/prepare-for-test.sh",
     "stop": "(pm2 stop all && pm2 delete all) | grep 'PM2'",
-    "dev": "./scripts/prepare-for-dev.sh",
-    "dev:prestart": "./scripts/prestart-dev.sh",
-    "db:reset": "./scripts/reset-db-dev.sh",
-    "db:reset:debug": "./scripts/reset-db-dev-debug.sh",
-    "pretest": "npm start",
-    "test": "jest -i --forceExit --verbose --config=./jest.config.js",
-    "test:dev": "NODE_ENV=development npm run jest -i --forceExit --verbose --config=./jest.config.js",
-    "test:dev:open": "NODE_ENV=development HEADLESS=false npm run test:dev",
-    "test:dev:report": "./__tests__/reports/generate.sh"
+    "compose:up": "(cd app && docker-compose up -d --build)",
+    "compose:down": "(cd app && docker-compose down --remove-orphans)"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/betrybe/sd-0x-project-delivery-app.git"
+    "url": "git+https://github.com/HumbertoCastro/NGcash-trybe.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/betrybe/sd-0x-project-delivery-app/issues"
+    "url": "https://github.com/HumbertoCastro/NGcash-trybe/issues"
   },
-  "homepage": "https://github.com/betrybe/sd-0x-project-delivery-app#readme",
+  "homepage": "https://github.com/HumbertoCastro/NGcash-trybe#readme",
   "devDependencies": {
     "@faker-js/faker": "6.0.0",
     "axios": "0.26.1",

@@ -10,7 +10,9 @@ const accountService = require('../services/accountService');
 }; */
 
 const getById = async (req, res) => {
+  console.log("esperanca");
   const { id } = req.params;
+  const product = await accountService.getById(id);
   try {
     const product = await accountService.getById(id);
 
@@ -18,7 +20,7 @@ const getById = async (req, res) => {
 
     return res.status(200).json(product);
   } catch (err) {
-    return res.status(500).json({ message: 'Internal Service Error' });
+    return res.status(500).json({ message: product });
   }
 };
 

@@ -1,5 +1,5 @@
 apps:
-- name: delivery-app-back-end
+- name: ngcash-app-back-end
   cwd: ./back-end
   script: npm
   args: "start"
@@ -9,7 +9,7 @@ apps:
   watch: true
   env:
     PORT: 3001
-- name: delivery-app-front-end
+- name: ngcash-app-front-end
   cwd: ./front-end
   script: npm
   args: "start"

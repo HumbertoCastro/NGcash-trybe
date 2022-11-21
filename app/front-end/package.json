@@ -1,7 +1,7 @@
 {
-  "name": "delivery-app-back-end",
+  "name": "ngcash-app-back-end",
   "version": "0.1.0",
-  "description": "Front-end do projeto App de Delivery",
+  "description": "Front-end do projeto App de ngcash",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -27,6 +27,7 @@
     "react-router-dom": "^5.3.3",
     "react-scripts": "5.0.0",
     "serve": "13.0.2",
+    "axios": "0.26.1",
     "web-vitals": "2.1.4"
   },
   "devDependencies": {
