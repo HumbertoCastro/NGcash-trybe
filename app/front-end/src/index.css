@@ -135,24 +135,6 @@ button.terciary:hover {
   width: 15%;
 }
 
-.add-button-products {
-  width: 100%;
-}
-
-.total-price {
-  border-radius: 5px;
-  color: white;
-  font-size: x-large;
-  position: sticky;
-  bottom: 0;
-}
-
-table {
-  border: 1px solid gray;
-  align-items: center;
-  text-align: center;
-}
-
 .purple {
   color: white;
   background: #421981;
@@ -160,16 +142,7 @@ table {
 
 .blue {
   color: white;
-  background: #056CF9;
-}
-
-.order-card {
-  border-radius: 0.5rem;
-  border: 1px solid #a3a3a3;
-  padding: 0.625rem;
-  cursor: pointer;
-  margin: 1rem;
-  transition: all ease 0.2s;
+  background: blue;
 }
 
 .register {
@@ -180,43 +153,9 @@ table {
   height: 100vh;
 }
 
-.order-card:hover {
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-
-.orderInfos {
-  display: block;
-}
-
-.order-total, .order-data {
-  margin: 0 auto;
-  width: fit-content;
-}
-
-.order-data {
-  margin-bottom: 0.25rem;
-}
-
-.order-total::before {
-  content: "total: R$";
-}
-
-.status-title {
-  font-weight: 700;
-  margin: 0 0.5rem;
-  font-size: 1.3rem;
-  border-radius: 1rem;
-  padding: 0.25rem;
-}
-
 .filters button {
   max-width: 10vh;
   min-width: 10vh;
-}
-
-.transactions {
-  
 }
 
 .navbar {
@@ -245,10 +184,6 @@ table {
   white-space: nowrap;
   text-align: center;
   font-size: xx-large;
-}
-
-.qualquercoisa {
-  width: 80%;
 }
 
 main {
