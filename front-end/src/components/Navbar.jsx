@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from './Button';
 import accountService from '../services/account';
+import ngcashContext from '../context/ngcashContext';
 
 function Navbar() {
   const [userName, setUsername] = useState('');
-  const [accountBalance, setAccountBalance] = useState(0);
+  const {
+    accountBalance, setAccountBalance,
+  } = useContext(ngcashContext);
 
   useEffect(async () => {
     const user = JSON.parse(localStorage.getItem('user'));

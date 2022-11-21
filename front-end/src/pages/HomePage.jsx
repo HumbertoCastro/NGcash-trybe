@@ -14,15 +14,17 @@ function HomePage() {
     allTransactions,
     setAllTransactions,
     setUnfilterTransactions,
+    accountBalance,
   } = useContext(ngcashContext);
   const [name, setName] = useState('');
   const [myId, setMyId] = useState('');
   const [creditedName, setCreditedName] = useState('');
   const [value, setValue] = useState(0);
   const [invalid, setInvalid] = useState(false);
+  const [invalidMessage, setInvalidMessage] = useState('');
 
   const invalidUsername = () => (
-    <h1>Insert valid data</h1>
+    <h1>{ invalidMessage }</h1>
   );
 
   const handleChange = (
@@ -31,7 +33,19 @@ function HomePage() {
 
   const handleTransaction = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
-    const { token, accountId } = user;
+    const { token, accountId, name: userName } = user;
+
+    if (userName === creditedName) {
+      setInvalid(true);
+      setInvalidMessage('You can not transfer to yourself');
+      return;
+    }
+    if (parseInt(accountBalance, 10) < parseInt(value, 10)) {
+      console.log('d');
+      setInvalid(true);
+      setInvalidMessage('You dont have enough money, sorry');
+      return;
+    }
 
     const data = {
       id: accountId,
@@ -46,6 +60,7 @@ function HomePage() {
       await transactionsService.createTransaction(data, headers);
       window.location.reload(false);
     } catch (err) {
+      setInvalidMessage('Please, put valid data');
       setInvalid(true);
     }
   };

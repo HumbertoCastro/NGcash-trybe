@@ -1,5 +1,5 @@
 const isNameAndPasswordValid = (name, password) => {
-  const min = 8;
+  const min = 3;
   const validPasswordExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
   const isValidPassword = validPasswordExp.test(password);
   const isValidName = name.length >= min;

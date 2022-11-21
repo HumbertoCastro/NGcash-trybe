@@ -5,6 +5,7 @@ import ngcashContext from './ngcashContext';
 function Provider({ children }) {
   const [allTransactions, setAllTransactions] = useState([]);
   const [unfilterTransactions, setUnfilterTransactions] = useState([]);
+  const [accountBalance, setAccountBalance] = useState(0);
 
   useEffect(() => {
     console.log(allTransactions);
@@ -15,6 +16,8 @@ function Provider({ children }) {
     setAllTransactions,
     unfilterTransactions,
     setUnfilterTransactions,
+    accountBalance,
+    setAccountBalance,
   };
 
   return (
