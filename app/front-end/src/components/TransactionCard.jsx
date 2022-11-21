@@ -13,15 +13,14 @@ function TransactionCard({ name, value, type, otherAccountName, date }) {
   const formatDate = new Date(date);
   if (type === 'cashin') {
     return (
-      <div className="flex-row green">
-        <h1>cash-in: </h1>
-        <h1>{ otherAccountName }</h1>
-        <p>to</p>
-        <h1>{ name }</h1>
-        <p>with the value of: +</p>
-        <h1>{ value }</h1>
-        <p>{ formatDate.toLocaleDateString('en-US', options) }</p>
-      </div>
+      <table className="flex-row green">
+        <tr className="purple">cash-in: </tr>
+        <tr>{ otherAccountName }</tr>
+        <tr>to</tr>
+        <tr>{ name }</tr>
+        <tr className="primary">{ `+${value}` }</tr>
+        <tr>{ formatDate.toLocaleDateString('en-US', options) }</tr>
+      </table>
     );
   }
   return (

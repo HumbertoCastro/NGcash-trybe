@@ -98,7 +98,8 @@ function HomePage() {
     <div className="products-page flex-column">
       <Navbar />
       <Filters />
-      <main className="flex-column">
+      <main className="transactions flex-column">
+        <h1>All transactions: </h1>
         {
           allTransactions.map((x) => {
             const {

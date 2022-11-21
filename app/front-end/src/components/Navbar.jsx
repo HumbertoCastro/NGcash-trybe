@@ -28,14 +28,10 @@ function Navbar() {
   };
   return (
     <div className="navbar flex-row">
-      <h1
-        className="purple"
-      >
+      <h1>
         { userName }
       </h1>
-      <h1
-        className="purple"
-      >
+      <h1>
         Available cash:
         { accountBalance }
       </h1>

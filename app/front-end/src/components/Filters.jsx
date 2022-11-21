@@ -48,7 +48,7 @@ function Filters() {
   };
 
   return (
-    <section>
+    <section className="filters flex-row">
       <button
         className="primary"
         type="button"
@@ -68,14 +68,14 @@ function Filters() {
         type="button"
         onClick={ filterByDateOlder }
       >
-        Date older
+        Older
       </button>
       <button
         className="primary"
         type="button"
         onClick={ filterByDateSooner }
       >
-        Date sooner
+        Sooner
       </button>
     </section>
   );

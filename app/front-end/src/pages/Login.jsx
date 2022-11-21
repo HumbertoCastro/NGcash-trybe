@@ -60,6 +60,7 @@ function Login({ history }) {
   return (
     <section className="login flex-column">
       <div className="login-container">
+        <h1>A CARTEIRA DA NOVA GERAÇAO</h1>
         <form className="flex-column">
           <img src={ img } className="form-logo" alt="imagem-logo" width="70px" />
           <InputsText
@@ -88,9 +89,10 @@ function Login({ history }) {
           </div>
         </form>
       </div>
-      <div>
+      <div className="side-div">
         <div className="flex-row brand">
           <h1>NGcash app</h1>
+          <img className="trybe-logo" src={ img } alt="imagem-logo" width="70px" />
         </div>
       </div>
       {
